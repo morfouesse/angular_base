@@ -12,7 +12,7 @@ export class AuthService {
                          this.isAuth = true;
                          //resultat
                          resolve(true);
-                    }, 2000
+                    }, 500
                 );        
             }
         ); 
