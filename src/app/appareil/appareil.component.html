@@ -3,14 +3,19 @@
                 'list-group-item-danger' : appareilStatus === 'off' }">
                 <!--  <div style="width:20px;height:20px;background-color:red;"
     *ngIf="appareilStatus === 'off'"></div>-->
-    <h4 [ngStyle]="{ color: getColor() }">appareil : {{ appareilName }} &nbsp;&nbsp;&nbsp;&nbsp;  Status: {{ getStatus() }}</h4>
+   <h4 [ngStyle]="{ color: getColor() }">
+       appareil : {{ appareilName }} &nbsp;&nbsp;&nbsp;&nbsp;
+       Status: {{ getStatus() }}
+   </h4>
+   <a [routerLink]="[id]" class="btn btn-outline-primary">Détail</a>
     <!--[(ngModel)] lié a la priorité et a l'évenement
    <input type="text" class="form-control" [(ngModel)]="appareilName">-->
-   <button class="btn btn-success" 
+   <button id="btn" class="btn btn-outline-success" 
    (click)="onSwitchOn()"
    [disabled]="appareilStatus === 'on'">Allumer</button>
    
-   <button class="btn btn-danger" 
+   <button class="btn btn-outline-danger" 
    (click)="onSwitchOff()"
    [disabled]="appareilStatus === 'off'">Eteindre</button>
+
 </li>

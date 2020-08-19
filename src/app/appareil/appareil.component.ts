@@ -13,9 +13,9 @@ export class AppareilComponent implements OnInit {
 // de les initialiser dans la balise app-apparail.
 @Input() appareilName: string;
 @Input() appareilStatus: string;
-// permet dans la balise app-appareil de lié
-// ces inputs à l'objet appareil et à son index 
 @Input() indexOfAppareil: number;
+@Input() id: number;
+
 
   constructor(private appareilService: AppareilService) { }
 

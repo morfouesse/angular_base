@@ -6,19 +6,22 @@
       <!--*ngfor=> directive -->
       <!--[appareilName]=> property binding -->
       <app-appareil *ngFor="let appareil of appareils; let i = index"
-       [indexOfAppareil]="i"
-       [appareilName]="appareil.name"
-       [appareilStatus]="appareil.status"></app-appareil>
+        [indexOfAppareil]="i"
+        [appareilName]="appareil.name"
+        [appareilStatus]="appareil.status"
+        [id]="appareil.id">
+      </app-appareil>
      <!-- <app-aparail [appareilName]="appareilOne" [appareilStatus]="'off'"></app-aparail>
       <app-aparail [appareilName]="appareilTwo" [appareilStatus]="'on'"></app-aparail>
      -->
     </ul> 
     <!-- ce bouton sera désactiver si la variable isAuth est vrai -->
     <br>
-    <button class="btn btn-success" 
+    
+    <button class="btn btn-outline-success" 
       [disabled]="!isAuth"
-      (click)="onAllumer()">allumer</button>
+      (click)="onAllumer()">Tout allumer</button>
 
-    <button class="btn btn-danger"
-    (click)="onEteindre()">All off</button>
-  </div>
+    <button id="btn" class="btn btn-outline-danger"
+    (click)="onEteindre()">Tout éteindre</button>
+</div>

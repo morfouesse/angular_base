@@ -12,12 +12,15 @@ import { AuthService } from './services/auth.service';
 import { AuthComponent } from './auth/auth.component';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component';
 import { RouterModule, Routes } from '@angular/router';
+import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
 
 // mes routes dynamiques
 const appRoutes: Routes = [
   { path: 'appareils', component: AppareilViewComponent},
+  {path: 'appareils/:id', component: SingleAppareilComponent},
   {path: 'auth', component: AuthComponent},
   {path: '', component: AppareilViewComponent}
+ 
 ];
 
 @NgModule({
@@ -26,7 +29,8 @@ const appRoutes: Routes = [
     TestComponentComponent,
     AppareilComponent,
     AuthComponent,
-    AppareilViewComponent
+    AppareilViewComponent,
+    SingleAppareilComponent
   ],
   imports: [
     BrowserModule,
