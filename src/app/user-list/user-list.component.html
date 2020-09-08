@@ -1,0 +1,13 @@
+<ul  class="card" style="width: 18rem;">
+    <div class="list-goup-item" 
+    *ngFor="let user of users">
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <br>
+        <h5>{{ user.email }}</h5>
+        <h5>j'adore boire du {{ user.drinkPreference }}</h5>
+        <h5  *ngIf="user.hobbies && user.hobbies.length > 0">
+            Cette personnes a des hobbies : &nbsp;
+        <span  *ngFor="let hobby of user.hobbies">{{ hobby }} -</span>
+       </h5>
+    </div>
+</ul>

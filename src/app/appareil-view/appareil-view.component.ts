@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppareilService } from '../services/appareil.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-appareil-view',
@@ -21,7 +22,7 @@ export class AppareilViewComponent implements OnInit {
  )
 
  appareils: any[];
-
+ appareilSubscription: Subscription;
  
  constructor(private appareilService: AppareilService)// liaison par interpolarition
  {
@@ -41,8 +42,13 @@ export class AppareilViewComponent implements OnInit {
    this.appareilService.switchOffAll();
  }
 
- ngOnInit(){//called after the constructor and called  after the first ngOnChanges()   
+ ngOnInit(){//called after the constructor 
    // prend les appareils et les mets dans unn tableau
-   this.appareils = this.appareilService.appareils;
+   this.appareilSubscription = this.appareilService.appareilSubject.subscribe(
+     (appareils: any[]) => {
+       this.appareils = appareils;
+     }
+   );
+   this.appareilService.emitAppareilSubject();
  }
 }

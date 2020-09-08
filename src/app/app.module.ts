@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,11 +15,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import {AuthGuard} from './services/auth-guard.service';
+import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserService } from './services/user.service';
 
 // mes routes dynamiques
 const appRoutes: Routes = [
   {path: 'appareils', canActivate: [AuthGuard], component: AppareilViewComponent},
   {path: 'appareils/:id', canActivate: [AuthGuard], component: SingleAppareilComponent},
+  {path: 'edit', canActivate: [AuthGuard], component: EditAppareilComponent },
+  {path: 'users', component: UserListComponent},
   {path: 'auth', component: AuthComponent},
   {path: '', component: AppareilViewComponent},
   {path: 'not-found', component: ErrorPageComponent},
@@ -37,11 +42,14 @@ const appRoutes: Routes = [
     AuthComponent,
     AppareilViewComponent,
     SingleAppareilComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    EditAppareilComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     NgbModule,
     RouterModule.forRoot(appRoutes)
@@ -49,6 +57,7 @@ const appRoutes: Routes = [
   providers: [
     AppareilService,
     AuthService,
+    UserService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

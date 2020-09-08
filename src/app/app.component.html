@@ -1,18 +1,28 @@
 <body>
-<nav class="navbar  navbar-expand-md bg-dark navbar-dark ">
+<nav class="navbar  navbar-expand-lg bg-dark navbar-dark ">
   <a class="navbar-brand"  routerLink="appareils">ZAPPAREILS</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item"  routerLinkActive="active">
         <a class="nav-link" routerLink="auth">Se connecter </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="appareils">les appareils</a>
       </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="edit">Nouvelle appareil</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="users">Utilisateur</a>
+      </li>
+    
     </ul>
+    <span class="navbar-text">
+      <p>vous êtes connecté depuis {{ secondes }} secondes</p>
+    </span>
   </div>
 </nav>
 <br>
