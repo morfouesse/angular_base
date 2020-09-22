@@ -1,7 +1,9 @@
-<ul  class="card" style="width: 18rem;">
-    <div class="list-goup-item" 
-    *ngFor="let user of users">
-        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+<a  class="btn btn-outline-primary" routerLink="/new-user">Nouveau utilisateur</a>
+<br>
+<br>
+<ul  class="list-group">
+    <li class="list-group-item" *ngFor="let user of users">
+        <h1>{{ user.firstName }} {{ user.lastName }}</h1>
         <br>
         <h5>{{ user.email }}</h5>
         <h5>j'adore boire du {{ user.drinkPreference }}</h5>
@@ -9,5 +11,5 @@
             Cette personnes a des hobbies : &nbsp;
         <span  *ngFor="let hobby of user.hobbies">{{ hobby }} -</span>
        </h5>
-    </div>
+    </li>
 </ul>
