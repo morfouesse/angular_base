@@ -1,6 +1,8 @@
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-
+@Injectable()
 export class AppareilService{
 
   //Il existe un type d'Observable qui permet non seulement de réagir
@@ -11,23 +13,10 @@ export class AppareilService{
   
   //Quand vous déclarez un Subject, il faut dire quel type de données il gere
   appareilSubject = new Subject<any[]>();
-  private appareils=[
-        {
-          id: 1,
-          name:"machine à laver",
-          status:"off"
-        },
-        {
-          id: 2,
-          name:"ordi",
-          status:"on"
-        },
-        {
-          id: 3,
-          name:"aspi",
-          status:"off"
-        }
-      ];
+  private appareils=[];
+
+      constructor(private httpClient: HttpClient)
+      {}
       //le subject emet la liste des appareils
       emitAppareilSubject()
       {
@@ -88,4 +77,37 @@ export class AppareilService{
     this.appareils.push(appareilObject);
     this.emitAppareilSubject();
   }
+
+  saveAppareilsToServer()
+  {//envoie des données vers le serveur et réagit à la réponse du serveur
+    // post => enregistre dans la BDD (n'écrase pas les données identiques)
+    // put => écrase les données existente dans la BDD avec des nouvelles
+    this.httpClient
+    .put('https://client-demo-545c0.firebaseio.com/appareils.json',this.appareils)
+    .subscribe(
+      () => {
+        console.log("Enregistrement terminé !");
+      },
+      (error) => {
+        console.log("Erreur de sauvegarde " + error);
+      }
+    );
+  }
+  //liste des appareils dans la BDD
+  getAppareilsFromServer()
+  {// cast <any[]> pour inclure le type Object
+    this.httpClient
+    .get<any[]>('https://client-demo-545c0.firebaseio.com/appareils.json')
+    .subscribe(
+      (response) => {
+        this.appareils = response;
+        //quand des donnéés sont récupéré sur le serveur
+        // faire cette methode sinon on ne verra pas de changement
+        this.emitAppareilSubject();
+      },
+      (error) => {
+        console.log("err de chargement " + error);
+      }
+    )
+  };
 }

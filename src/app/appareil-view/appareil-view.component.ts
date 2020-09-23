@@ -51,4 +51,15 @@ export class AppareilViewComponent implements OnInit {
    );
    this.appareilService.emitAppareilSubject();
  }
+
+ //décclenche l'enregistrement d'un appareil dans la BDD
+ onSave()
+ {
+   this.appareilService.saveAppareilsToServer();
+ }
+
+ onFetch() //chercher
+ {
+    this.appareilService.getAppareilsFromServer();
+ }
 }
